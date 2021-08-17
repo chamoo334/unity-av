@@ -18,12 +18,13 @@
     - [ ] Views from top, bottom, or wall
   - [ ] Attach song
   - [ ] Song data processing
+    - [ ] Separate into 8 bands
   - [ ] Appropriate graphics are attached to correct bands
   - [ ] Exit button and functionality
 
 ### In Progress
 
-- [ ] Work on Github Repo [JIRA-345]
+- [ ] Menu Screen
 
 ### Done ✓
 
