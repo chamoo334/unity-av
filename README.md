@@ -2,17 +2,6 @@
 
 ### Todo
 
-- [x] Menu Screen  
-  - [ ] Add quiet music
-  - [x] Main Menu Scene
-    - [x] Play button with correct functionality
-    - [x] Options button with correct functionality
-    - [x] Quit button with correct functionality
-  - [ ] Options Menu Scene
-    - [x] Back button with functionality
-    - [ ] Volume slider with functionality
-    - [ ] Graphics Assignment to specific bands functionality
-
 - [ ] Game Play
   - [ ] Box to contain visuals
     - [ ] Views from top, bottom, or wall
@@ -20,12 +9,24 @@
   - [ ] Song data processing
     - [ ] Separate into 8 bands
   - [ ] Appropriate graphics are attached to correct bands
-  - [ ] Exit button and functionality
+    - [ ] Choice of 5 graphics options
+  - [ ] Pause Menu
+  - [ ] Exit/Back button and functionality
 
 ### In Progress
 
-- [ ] Menu Screen
+- [ ] Box / Visuals Container
+- [ ] 5 Graphics
 
 ### Done ✓
 
-- [x] Main Menu Scene and all subtask
+- [x] Menu Screen
+
+  - [x] Add quiet music
+  - [x] Main Menu Scene
+    - [x] Play button with correct functionality
+    - [x] Options button with correct functionality
+    - [x] Quit button with correct functionality
+  - [x] Options Menu Scene
+    - [x] Back button with functionality
+    - [x] Volume slider with functionality
