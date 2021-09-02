@@ -8,14 +8,25 @@
     - [ ] bottom
     - [ ] front
   - [ ] Appropriate graphics are attached to correct bands
-    - [ ] Choice of 5 graphics options
   - [ ] Pause Menu
-  - [ ] Exit/Back button and functionality
+    - [ ] Exit/Back buttons and functionality
+    - [ ] Adjust music volume
+    - [ ] Change song
+- Extras:
+  - [ ] Check FFT absolute values to always render above zero or manually shift in script.
+  - [ ] Lighting
 
 ### In Progress
 
 - [ ] 5 Graphics
-  - [x] cubes in V-shape
+  - [x] 16 cubes in V-shape
+  - [x] 512 circled cubes -> convert to fireflies
+  - [ ] center piece
+  - [ ] fireflies
+  - [ ] fireworks
+  - [x] 8 cubes centered
+  - [ ] 8 cubes in back
+  - [ ] 8 cubes in front
 
 ### Done ✓
 
