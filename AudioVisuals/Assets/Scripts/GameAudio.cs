@@ -6,7 +6,9 @@ using UnityEngine.Audio;
 public class GameAudio : MonoBehaviour
 {
     AudioSource gameMusic;
-    AudioClip[] allAudio;
+    AudioClip[] allAudio; //TODO: DontDestroyOnLoad() allSongs from AudioDropdownHandler
+    public static int _audioFrequency;
+
     void Start() 
     {
         gameMusic = GetComponent<AudioSource> ();
@@ -23,7 +25,7 @@ public class GameAudio : MonoBehaviour
         {
             selected = PlayerPrefs.GetInt("musicSelection");
         } else {
-            selected = 0;
+            selected = 2;
         }
         LoadAudioSelection(selected);
 
@@ -37,8 +39,9 @@ public class GameAudio : MonoBehaviour
 
     void LoadAudioSelection(int songIndex)
     {
-        Debug.Log(songIndex);
         gameMusic.clip = allAudio[songIndex];
         gameMusic.Play();
+        // Debug.Log(songIndex);
+        _audioFrequency = allAudio[songIndex].frequency;
     }
 }

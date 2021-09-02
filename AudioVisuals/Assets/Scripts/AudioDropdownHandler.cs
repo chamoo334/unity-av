@@ -26,21 +26,6 @@ public class AudioDropdownHandler : MonoBehaviour
         dropdown.onValueChanged.AddListener(delegate { UpdateGameSong(dropdown); });
     }
 
-    List<Object> GetAudioOptions()
-    {
-        List<Object> options = new List<Object>();
-        Object[] audioOpts;
-
-        audioOpts = Resources.LoadAll("Audio/GameOptions");
-        
-        foreach(var item in audioOpts)
-        {
-            options.Add(item);
-        }
-
-        return options;
-    }
-
     void UpdateGameSong( Dropdown dropdown)
     {
         PlayerPrefs.SetInt("musicSelection", dropdown.value);

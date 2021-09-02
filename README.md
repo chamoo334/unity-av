@@ -3,11 +3,10 @@
 ### Todo
 
 - [ ] Game Play
-  - [ ] Box to contain visuals
-    - [ ] Views from top, bottom, or wall
-  - [ ] Attach song
-  - [ ] Song data processing
-    - [ ] Separate into 8 bands
+  - [ ] Option to change view to:
+    - [ ] top
+    - [ ] bottom
+    - [ ] front
   - [ ] Appropriate graphics are attached to correct bands
     - [ ] Choice of 5 graphics options
   - [ ] Pause Menu
@@ -15,8 +14,8 @@
 
 ### In Progress
 
-- [ ] Box / Visuals Container
 - [ ] 5 Graphics
+  - [x] cubes in V-shape
 
 ### Done ✓
 
@@ -30,3 +29,10 @@
   - [x] Options Menu Scene
     - [x] Back button with functionality
     - [x] Volume slider with functionality
+
+- [ ] Game Play
+
+  - [x] Box to contain visuals
+  - [x] Attach song
+  - [x] Song data processing
+    - [x] Separate into 8 bands
