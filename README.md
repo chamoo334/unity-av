@@ -15,6 +15,8 @@
       - [ ] clear songs and graphics on execution
     - [ ] Adjust music volume
     - [ ] Change song
+  - [ ] Optimize with gpu
+
 - Extras:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
   - [ ] Lighting
@@ -42,7 +44,6 @@
     - [x] Back button with functionality
     - [x] Volume slider with functionality
     - [x] Song selection
-
 - [ ] Game Play
 
   - [x] Box to contain visuals
