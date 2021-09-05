@@ -9,15 +9,16 @@
 
 - [ ] Game Play
   - [ ] Seperate audio bands into 3 main (low, mid, high)
-  - [ ] attach graphics to such
+  - [ ] attach graphics to appropriate bands
   - [ ] Pause Menu
     - [ ] Exit/Back buttons and functionality
-      - [ ] clear songs and graphics
+      - [ ] clear songs and graphics on execution
     - [ ] Adjust music volume
     - [ ] Change song
 - Extras:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
   - [ ] Lighting
+  - [ ] Smooth scene loading transitions
 
 ### In Progress
 
