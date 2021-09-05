@@ -26,7 +26,7 @@ public class TestCubes : MonoBehaviour
     {
         for (int i=0; i<512; i++){
             if (_cubeSamples != null){
-                _cubeSamples[i].transform.localScale = new Vector3(10,(AudioProcessing._audioSamples[i] * _maxScale + 2),10);
+                _cubeSamples[i].transform.localScale = new Vector3(10,(AudioProcessing._audioSamplesLeft[i] * _maxScale + 2),10);
             }
         }
     }

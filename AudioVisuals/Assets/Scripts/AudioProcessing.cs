@@ -5,20 +5,32 @@ using UnityEngine;
 public class AudioProcessing : MonoBehaviour
 {
     AudioSource _audioSource;
+    /* creates dropdown in gui for stereo, left, or right*/
+    public enum _channel {Stereo, Left, Right};
+    public _channel channel = new _channel();
+
     int[] hertzPerSample = {-1, 0};
-    public static float[] _audioSamples = new float[512];
+    public static float[] _audioSamplesLeft = new float[512]; //left channel only
+    public static float[] _audioSamplesRight = new float[512]; //right channel only
+
     public static float[] _freqBands = new float[8];
     public static float[] _freqBandBuffers = new float[8];
+
     float[] _buffDecrease = new float[8];
     public static float[] _freqBandHighs = new float[8];
     public static float[] _audioBands = new float[8];
     public static float[] _audioBandBuffs = new float[8];
+
+    public static float _amplitude, _amplitudeBuff; 
+    float _amplitudeHigh;
+    float _audioProfile = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        AudioProfile(_audioProfile);
     }
 
     // Update is called once per frame
@@ -31,11 +43,21 @@ public class AudioProcessing : MonoBehaviour
         MakeFreqBands();
         HandleBandBuffers();
         CreateAudioBands();
+        GetTotalAmplitude();
+    }
+
+    void AudioProfile(float audioPro) //provide initial values for _freqhighest for smother graphics
+    {
+        for (int i=0; i<8; i++){
+            _freqBandHighs[i] = audioPro;
+        }
     }
 
     void GetSpectrum()
     {
-        _audioSource.GetSpectrumData(_audioSamples, 0, FFTWindow.Blackman);
+        _audioSource.GetSpectrumData(_audioSamplesLeft, 0, FFTWindow.Blackman);
+        _audioSource.GetSpectrumData(_audioSamplesRight, 1, FFTWindow.Blackman);
+
     }
 
     void GetHertzPerSample()
@@ -61,7 +83,15 @@ public class AudioProcessing : MonoBehaviour
 
             for (int j=0; j<numSamples; j++)
             {
-                bandAverage += _audioSamples[count] * (count + 1);
+                if (channel == _channel.Stereo){
+                    bandAverage += (_audioSamplesLeft[count] + _audioSamplesRight[count]) * (count + 1);
+                }
+                if (channel == _channel.Left){
+                    bandAverage += (_audioSamplesLeft[count]) * (count + 1);
+                }
+                if(channel == _channel.Right){
+                    bandAverage += (_audioSamplesRight[count]) * (count + 1);
+                }
                 count++;
             }
 
@@ -102,5 +132,22 @@ public class AudioProcessing : MonoBehaviour
             _audioBandBuffs[i] = (_freqBandBuffers[i]/_freqBandHighs[i]);
 
         }
+    }
+
+    void GetTotalAmplitude() //get average amplitude single value
+    {
+        float tempAmp=0, tempAmpBuff=0;
+        
+        for(int i=0; i<8;i++){
+            tempAmp += _audioBands[i];
+            tempAmpBuff += _audioBandBuffs[i];
+        }
+
+        if(tempAmp > _amplitudeHigh){
+            _amplitudeHigh = tempAmp;
+        }
+
+        _amplitude = tempAmp / _amplitudeHigh;
+        _amplitudeBuff = tempAmpBuff / _amplitudeHigh;
     }
 }
