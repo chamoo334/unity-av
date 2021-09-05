@@ -8,7 +8,7 @@
     - [ ] User option to associate graphic to choice of 3 bands
 
 - [ ] Game Play
-  - [ ] Seperate audio bands into 3 main (low, mid, high)
+  - [ ] Separate audio bands into 3 main (low, mid, high)
   - [ ] attach graphics to appropriate bands
   - [ ] Pause Menu
     - [ ] Exit/Back buttons and functionality
@@ -24,10 +24,9 @@
 
 ### In Progress
 
-- [ ] 5 Graphics
+- [ ] Graphics
   - [ ] 512 circled cubes -> convert to fireflies
   - [ ] center piece (skull or circles)
-  - [ ] atoms
   - [ ] fireworks
   - [ ] fractals
 
@@ -54,8 +53,9 @@
   - [x] Attach song
   - [x] Song data processing
     - [x] Separate into 8 bands
-  - [ ] 5 Graphics
+  - [ ] Graphics
     - [x] 16 cubes in V-shape
     - [x] 8 cubes centered
     - [x] 8 cubes in back
     - [x] 8 cubes in front
+    - [x] atoms
