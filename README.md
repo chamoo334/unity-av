@@ -12,13 +12,21 @@
       - [ ] set standard to V-shape, atoms, back cubes
 
 - [ ] Game Play
+
   - [ ] attach graphics as defined in user options
   - [ ] Pause Menu
     - [ ] Exit/Back buttons and functionality
-      - [ ] clear songs and graphics
+      - [ ] clear songs and graphics on execution
     - [ ] Adjust music volume
     - [ ] Change song
+
+- [ ] Smooth scene loading transitions
+
 - Version 2:
+
+  - [ ] Optimize with gpu
+
+- Extras:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
   - [ ] Check bitdepth for audio calculations
   - [ ] Lighting
@@ -31,6 +39,10 @@
     - [ ] set particle system to BPM
   - [ ] Blender particle system
   - [ ] circles
+  - [ ] 512 circled cubes -> convert to fireflies
+  - [ ] center piece (skull or circles)
+  - [ ] fireworks
+  - [ ] fractals
 
 ### Done ✓
 
@@ -56,7 +68,7 @@
   - [x] Attach song
   - [x] Song data processing
     - [x] Separate into 8 bands
-  - [ ] 5 Graphics
+  - [ ] Graphics
     - [x] 16 cubes in V-shape
     - [x] 8 cubes centered
     - [x] 8 cubes in back
