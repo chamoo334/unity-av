@@ -5,28 +5,32 @@
 - [ ] Menu Screen
 
   - [ ] Options Menu Scene
-    - [ ] User option to associate graphic to choice of 3 bands
+    - [ ] User option to select 3 visuals
+      - [ ] one center (atoms or circles)
+      - [ ] one block based (Vshape, front, back)
+      - [ ] one spacial (fireflies minimal, blender effect, )
+      - [ ] set standard to V-shape, atoms, back cubes
 
 - [ ] Game Play
-  - [ ] Seperate audio bands into 3 main (low, mid, high)
-  - [ ] attach graphics to such
+  - [ ] attach graphics as defined in user options
   - [ ] Pause Menu
     - [ ] Exit/Back buttons and functionality
       - [ ] clear songs and graphics
     - [ ] Adjust music volume
     - [ ] Change song
-- Extras:
+- Version 2:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
+  - [ ] Check bitdepth for audio calculations
   - [ ] Lighting
+  - [ ] Filters for low, mid, high and optional object attachments
 
 ### In Progress
 
-- [ ] 5 Graphics
-  - [ ] 512 circled cubes -> convert to fireflies
-  - [ ] center piece (skull or circles)
-  - [ ] atoms
-  - [ ] fireworks
-  - [ ] fractals
+- [ ] Graphics
+  - [ ] fireflies (minimal)
+    - [ ] set particle system to BPM
+  - [ ] Blender particle system
+  - [ ] circles
 
 ### Done ✓
 
@@ -57,3 +61,4 @@
     - [x] 8 cubes centered
     - [x] 8 cubes in back
     - [x] 8 cubes in front
+    - [x] atoms

@@ -9,6 +9,7 @@ public class GameAudio : MonoBehaviour
     AudioClip[] allAudio; //TODO: DontDestroyOnLoad() allSongs from AudioDropdownHandler
     public static int _audioFrequency;
 
+    /**/
     void Start() 
     {
         gameMusic = GetComponent<AudioSource> ();
@@ -32,11 +33,13 @@ public class GameAudio : MonoBehaviour
 
     }
 
+    /**/
     void LoadAudioVolume()
     {
         AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
     }
 
+    /**/
     void LoadAudioSelection(int songIndex)
     {
         gameMusic.clip = allAudio[songIndex];

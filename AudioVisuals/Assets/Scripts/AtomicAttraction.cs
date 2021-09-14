@@ -37,9 +37,17 @@ public class AtomicAttraction : MonoBehaviour
     float[] _audioBandEmissionColor;
     float[] _audioBandScale;
 
+    public bool _animatePosition;
+    Vector3 _startPoint, _destinationPoint;
+    public AnimationCurve _animationCurve;
+    float _animationTimer;
+    public float _animationSpeed;
+    public bool _animationPosBuffered;
+
     float gradientStepSize; 
     // float gradientStepSize2 = 1.0f / _gradient.colorKeys.Length;
 
+    /*Provides view of attractors while editing scene*/
     private void OnDrawGizmos() 
     {
         gradientStepSize = 1.0f / _attractPoints.Length; 
@@ -57,10 +65,17 @@ public class AtomicAttraction : MonoBehaviour
 
             Gizmos.DrawSphere(pos, _scaleAttractPoints * 0.5f);
         }
+
+        Gizmos.color = new Color(1,1,1);
+        Vector3 startPoint = transform.position;
+        Vector3 endpoint = transform.position + _destinationPoint;
+        Gizmos.DrawLine(startPoint, endpoint);
     }
-    // Start is called before the first frame update
+
+    /**/
     void Start()
     {
+        _startPoint = transform.position;
         gradientStepSize = 1.0f / _attractPoints.Length; 
         _attractorArray = new GameObject[_attractPoints.Length];
         _atomArray = new GameObject[_attractPoints.Length * _numAtomsPerAttractor];
@@ -72,6 +87,7 @@ public class AtomicAttraction : MonoBehaviour
         _audioBandScale = new float[8];
         
         int atomCount = 0;
+
         //instantiate attract points
         for (int i=0; i < _attractPoints.Length; i++){
             GameObject _attractInst = (GameObject)Instantiate(_attractor);
@@ -111,20 +127,22 @@ public class AtomicAttraction : MonoBehaviour
                 //apply material
                 _atomInstance.GetComponent<MeshRenderer>().material = _sharedMaterials[i];
 
-                _atomInstance.transform.parent = transform.parent;
+                _atomInstance.transform.parent = _attractInst.transform;
                 _atomArray[atomCount] = _atomInstance;
                 atomCount++;
             }
         }
     }
 
-    // Update is called once per frame
+    /**/
     void Update()
     {
         SelectAudioValues();
         AtomBehavior();
+        AnimatePosition();
     }
 
+    /* Updates threshold, emittedColors, and scaling for each band*/
     void SelectAudioValues()
     {
         //threshold
@@ -162,14 +180,14 @@ public class AtomicAttraction : MonoBehaviour
 
     }
 
+    /*Sets audibandEmission relative to threshold. If below threshold, black. */
     void AtomBehavior()
     {
         int atomCount=0;
 
         for (int i=0; i<_attractPoints.Length; i++){
             Color _audioColor;
-            Material _atomMat;
-            //audibandEmission relative to threshold, if below threshold, black
+    
             if (_audioBandEmissionThreshold[_attractPoints[i]] >= _emissionThreshold){
                 _audioColor = new Color(_sharedColors[i].r * _audioBandEmissionColor[_attractPoints[i]] * _audioEmissionMult,
                                     _sharedColors[i].g * _audioBandEmissionColor[_attractPoints[i]] * _audioEmissionMult,
@@ -180,11 +198,8 @@ public class AtomicAttraction : MonoBehaviour
                 _audioColor = new Color(0,0,0,1);
                 _sharedMaterials[i].SetColor("_EmissionColor", _audioColor);
             }
-            // _sharedMaterials[i].SetColor("_EmissionColor", _audioColor);
 
             for(int j=0; j<_numAtomsPerAttractor; j++){
-                // _atomMat = _atomArray[atomCount].GetComponent<MeshRenderer>().material;
-                // _atomMat.SetColor("_EmissionColor", _audioColor);
                 _atomArray[atomCount].GetComponent<MeshRenderer>().material = _sharedMaterials[i];
                 _atomArray[atomCount].transform.localScale = new Vector3(_atomScaleSet[atomCount] + _audioBandScale[_attractPoints[i]] * _audioScaleMult,
                                                             _atomScaleSet[atomCount] + _audioBandScale[_attractPoints[i]] * _audioScaleMult,
@@ -192,6 +207,48 @@ public class AtomicAttraction : MonoBehaviour
 
                 atomCount++;
             }
+        }
+    }
+
+    /*Attractors movement timing based on audioband values.
+    TODO: adjust newX to ensure object remains in view*/
+    void AnimatePosition()
+    {
+        if (_animatePosition){
+
+            float newX = Mathf.Cos(AudioProcessing._amplitudeBuff)*100;
+            // if (newX > (transform.position.x + 10) && newX < (transform.position.x-10)){
+            //     newX *= -1;
+            // }
+            float newY = Mathf.Sin(AudioProcessing._amplitudeBuff)*100;
+            if (newY > 50){
+                newY -= 50;
+            } else if (newY < 0){
+                newY = 10;
+            }
+
+            float newZ = Mathf.Sqrt(Mathf.Pow((newX - transform.position.x), 2) + Mathf.Pow((newY - transform.position.y), 2));
+            if (newZ > 100){
+                newZ -= 100;
+            } else if (newZ < -100){
+                newZ += 100;
+            }
+
+            _destinationPoint = new Vector3(transform.position.x, newY, newZ);
+            // _destinationPoint = new Vector3(newX, newY, newZ);
+
+            
+            if (_animationPosBuffered){
+                _animationTimer = Time.deltaTime * AudioProcessing._amplitudeBuff* _animationSpeed;
+            } else {
+                _animationTimer = Time.deltaTime * AudioProcessing._amplitude * _animationSpeed;
+            }
+
+            if (_animationTimer >= 1){ _animationTimer -= 1f;}
+
+            float _alphaTime2 = _animationCurve.Evaluate (_animationTimer);
+
+            transform.position = Vector3.Lerp(_startPoint,_destinationPoint, _alphaTime2);
         }
     }
 }

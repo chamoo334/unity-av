@@ -8,7 +8,7 @@ public class AudioDropdownHandler : MonoBehaviour
 {
     AudioClip[] allSongs;
 
-    // Start is called before the first frame update
+    /*Fills dropdown audio options from Resources*/
     void Start()
     {
 
@@ -26,6 +26,7 @@ public class AudioDropdownHandler : MonoBehaviour
         dropdown.onValueChanged.AddListener(delegate { UpdateGameSong(dropdown); });
     }
 
+    /* Sets player prefs based on selected*/
     void UpdateGameSong( Dropdown dropdown)
     {
         PlayerPrefs.SetInt("musicSelection", dropdown.value);

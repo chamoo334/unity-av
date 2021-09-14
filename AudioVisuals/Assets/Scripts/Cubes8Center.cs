@@ -8,7 +8,9 @@ public class Cubes8Center : MonoBehaviour
     float _startScale = 1, _scaleMultiplier = 10000;
     public GameObject _sampleCubeFreq;
     GameObject[] _cubeFreqs = new GameObject[8];
-    // Start is called before the first frame update
+    
+    
+    /**/
     void Start()
     {
         int[] centeringValues = {-50, -35, -20, -5, 5, 20, 35, 50};
@@ -23,7 +25,7 @@ public class Cubes8Center : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /**/
     void Update()
     {
         Vector3 newVec;

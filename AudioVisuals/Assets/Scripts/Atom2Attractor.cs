@@ -5,15 +5,16 @@ using UnityEngine;
 public class Atom2Attractor : MonoBehaviour
 {
     Rigidbody _rigidbody;
-    public Transform _attractedTo; // onject to apply force to
-    public float _strengthofAttraction, _maxMag; // strength of attraction & max force for rigidbody
-    // Start is called before the first frame update
+    public Transform _attractedTo;
+    public float _strengthofAttraction, _maxMag;
+
+    /**/
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    /*Updates position relative to _attractredTo. Note: _attractedTo is set in AtomicAttractions' start()*/
     void Update()
     {
         if (_strengthofAttraction >= 0)
