@@ -8,7 +8,7 @@
     - [ ] User option to select 3 visuals
       - [ ] one center (atoms or circles)
       - [ ] one block based (Vshape, front, back)
-      - [ ] one spacial (fireflies minimal, blender effect, )
+      - [ ] one spacial (fireflies minimal, particles minimal )
       - [ ] set standard to V-shape, atoms, back cubes
 
 - [ ] Game Play
@@ -22,27 +22,22 @@
 
 - [ ] Smooth scene loading transitions
 
-- Version 2:
-
-  - [ ] Optimize with gpu
-
 - Extras:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
   - [ ] Check bitdepth for audio calculations
   - [ ] Lighting
   - [ ] Filters for low, mid, high and optional object attachments
+  - [ ] Blender particle systems
+  - [ ] Optimize with gpu
 
 ### In Progress
 
 - [ ] Graphics
-  - [ ] fireflies (minimal)
-    - [ ] set particle system to BPM
-  - [ ] Blender particle system
+  - [ ] fireflies (min) & particles (min)
+    - [ ] set all particle systems to BPM
+  - [ ] Blender particle systems
+    - [ ] script graph possible?
   - [ ] circles
-  - [ ] 512 circled cubes -> convert to fireflies
-  - [ ] center piece (skull or circles)
-  - [ ] fireworks
-  - [ ] fractals
 
 ### Done ✓
 
