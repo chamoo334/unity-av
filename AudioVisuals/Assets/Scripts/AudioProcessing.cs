@@ -10,10 +10,11 @@ public class AudioProcessing : MonoBehaviour
     public enum _channel {Stereo, Left, Right};
     public _channel channel = new _channel();
     public static string _channelSetting = "";
+    static int _sampleSize = 512;
 
     int[] hertzPerSample = {-1, 0};
-    public static float[] _audioSamplesLeft = new float[512];
-    public static float[] _audioSamplesRight = new float[512];
+    public static float[] _audioSamplesLeft = new float[_sampleSize];
+    public static float[] _audioSamplesRight = new float[_sampleSize];
 
     public static float[] _freqBands = new float[8];
     public static float[] _freqBandBuffers = new float[8];
@@ -35,6 +36,10 @@ public class AudioProcessing : MonoBehaviour
     float _amplitudeHigh;
     float _audioProfile = 0;
 
+    public float updateStep = 0.1f;
+    float updateTime = 0f;
+    public static float clipLoudness = 0, sizeFactor = 1, minSize = 0, maxSize = 100;
+
     /*  obtain audio source component and initialize _freqBandHighest values */
     void Start()
     {
@@ -52,6 +57,7 @@ public class AudioProcessing : MonoBehaviour
         HandleBandBuffers();
         CreateAudioBands();
         GetAmplitude();
+        CalculateClipLoudness();
     }
 
 
@@ -67,7 +73,7 @@ public class AudioProcessing : MonoBehaviour
             _freqBandHighs[i] = audioPro;
         }
 
-        hertzPerSample[0] = AudioSettings.outputSampleRate / 512; // GetSpectrumData uses outputSampleRate
+        hertzPerSample[0] = AudioSettings.outputSampleRate / _sampleSize; // GetSpectrumData uses outputSampleRate
         int finalMultiplier = AudioSettings.outputSampleRate / 20000; // adjust band size based on outputSamplerate to audible freqeuncy of 20k
         int subBassMax = 60;
 
@@ -75,12 +81,11 @@ public class AudioProcessing : MonoBehaviour
         {
             hertzPerSample[1]+=1;
         }
-
+        
         hertzPerSample[1] *= finalMultiplier;
     }
 
-    /* obtain left and right channel samples (512 each) using Blackman.
-    Divide into 3 for use by other objects. */
+    /* obtain left and right channel samples using Blackman.*/
     void GetSpectrum()
     {
         _audioSource.GetSpectrumData(_audioSamplesLeft, 0, FFTWindow.Blackman);
@@ -201,4 +206,20 @@ public class AudioProcessing : MonoBehaviour
         _amplitude = tempAmp / _amplitudeHigh;
         _amplitudeBuff = tempAmpBuff / _amplitudeHigh;
     }
+
+    /*Alternative to bpm*/
+    void CalculateClipLoudness()
+    {
+        updateTime += Time.deltaTime;
+
+        if (updateTime >= updateStep){
+            foreach( var each in _audioSamplesLeft){
+                clipLoudness += Mathf.Abs(each);
+            }
+            clipLoudness /= _sampleSize;
+            clipLoudness *= sizeFactor;
+            clipLoudness = Mathf.Clamp(clipLoudness, minSize, maxSize);
+        }
+    }
+    
 }

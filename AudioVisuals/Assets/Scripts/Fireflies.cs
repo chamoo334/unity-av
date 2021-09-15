@@ -9,6 +9,7 @@ public class Fireflies : MonoBehaviour
     GameObject[] _forceFieldsArray = new GameObject[4];
     GameObject singleFlies;
     GameObject singleField;
+    Vector3 rotatePos = new Vector3(360, 360, 360);
 
     float[] bands4 = new float[4];
     float lastAmp = 0;
@@ -91,8 +92,6 @@ public class Fireflies : MonoBehaviour
                 newPos = oldPos;
             }
         }
-
-        lastAmp = AudioProcessing._amplitude;
     }
 
 }

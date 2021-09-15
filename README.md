@@ -9,7 +9,7 @@
       - [ ] one center (atoms or circles)
       - [ ] one block based (Vshape, front, back)
       - [ ] one spacial (fireflies minimal, particles minimal )
-      - [ ] set standard to V-shape, atoms, back cubes
+      - [ ] set standard to V-shape, atoms, fireflies
 
 - [ ] Game Play
 
@@ -22,21 +22,22 @@
 
 - [ ] Smooth scene loading transitions
 
-- Extras:
+- Extras / Version 2:
   - [ ] Check FFT absolute values to always render above zero or manually shift in script.
   - [ ] Check bitdepth for audio calculations
   - [ ] Lighting
-  - [ ] Filters for low, mid, high and optional object attachments
-  - [ ] Blender particle systems
-  - [ ] Optimize with gpu
+  - [ ] Filters for low, mid, high and specific object attachment
+  - [ ] Blender animation export issues
+    - [ ] Blender animations respond to RT Audio?
+  - [ ] Optimize
+  - [ ] Beat mapping
 
 ### In Progress
 
 - [ ] Graphics
-  - [ ] fireflies (min) & particles (min)
-    - [ ] set all particle systems to BPM
-  - [ ] Blender particle systems
-    - [ ] script graph possible?
+  - [ ] fireflies (min)
+    - [ ] particle system shape rotation error
+    - [ ] emit light
   - [ ] circles
 
 ### Done ✓
@@ -69,3 +70,4 @@
     - [x] 8 cubes in back
     - [x] 8 cubes in front
     - [x] atoms
+    - [x] minimal rotating particles
